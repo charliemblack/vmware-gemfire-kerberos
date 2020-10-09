@@ -1,0 +1,41 @@
+@startuml
+GemFireClient --> KerberosAuthInitializer: getCredentials
+group Connect to the KDC once and only reconnect on failure.
+KerberosAuthInitializer --> KDC: login using service keytab
+KerberosAuthInitializer <-- KDC: Client is accepted
+end
+KerberosAuthInitializer --> KDC: getKerberosToken
+KerberosAuthInitializer <-- KDC: token
+note left
+    Start of token valid lifetime
+end note
+KerberosAuthInitializer --> KerberosAuthInitializer: Base64Encode Token
+GemFireClient <-- KerberosAuthInitializer: Security Properties
+group At GemFire Server start up (locators and servers)
+ServerComponent--> KerberosSecurityManager: init
+KerberosSecurityManager --> KDC: login
+KerberosSecurityManager <-- KDC: valid login
+ServerComponent<-- KerberosSecurityManager: Security Manager Ready
+end
+GemFireClient --> ServerComponent: Security Properties
+ServerComponent --> KerberosSecurityManager : Security Properties
+KerberosSecurityManager --> KDC : Check if token is valid
+alt successful case
+   ServerComponent <-- KerberosSecurityManager: Valid Connection
+   note right
+       End of token valid lifetime
+   end note
+   GemFireClient <-- ServerComponent
+   group Loop for lifetime of connection
+    GemFireClient <--> ServerComponent: Get Puts Functions ...
+   end
+
+else some kind of failure
+       ServerComponent <-- KerberosSecurityManager: Invalid Connection
+       note right
+           End of token valid lifetime
+       end note
+       GemFireClient <-- ServerComponent: What went wrong with the connection
+       GemFireClient <-- ServerComponent: Close Connection
+end
+@enduml
