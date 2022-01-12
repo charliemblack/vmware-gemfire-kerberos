@@ -55,7 +55,7 @@ useKeyTab=true
 storeKey=true
 keyTab="../../gemfire_cluster.keytab"
 useTicketCache=false
-principal="gemfire/demo-virtual-machine@GEMFIRE";
+principal="gemfire/demo-virtual-machine@DEMO-VIRTUAL-MACHINE";
 };
 ```
 ## GemFire Security Properties
@@ -206,3 +206,4 @@ Reboot the kerbros system:
 ```shell
 sudo systemctl restart krb5-admin-server
 ```
+

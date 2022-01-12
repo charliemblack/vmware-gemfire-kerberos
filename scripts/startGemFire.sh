@@ -23,7 +23,7 @@ DEFAULT_LOCATOR_MEMORY="--initial-heap=128m --max-heap=128m"
 DEFAULT_SERVER_MEMORY="--initial-heap=2g --max-heap=2g"
 
 DEFAULT_JVM_OPTS="--mcast-port=0"
-DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS  --J=-Djava.security.krb5.realm=GEMFIRE"
+DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS  --J=-Djava.security.krb5.realm=DEMO-VIRTUAL-MACHINE"
 DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS  --J=-Djava.security.krb5.kdc=localhost"
 DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS  --J=-Djava.security.auth.login.config=${APP_HOME}/jaas.conf"
 DEFAULT_JVM_OPTS="$DEFAULT_JVM_OPTS  --J=-Djavax.security.auth.useSubjectCredsOnly=false"

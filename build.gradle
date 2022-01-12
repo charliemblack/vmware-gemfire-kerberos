@@ -36,9 +36,10 @@ repositories {
 
 
 dependencies {
-    compile "io.pivotal.gemfire:geode-core:$gemfireVersion"
-    compile "io.pivotal.gemfire:geode-cq:$gemfireVersion"
-    compile "io.pivotal.gemfire:geode-wan:$gemfireVersion"
+    compile fileTree(dir: "${System.env.GEODE_HOME}/lib", includes: ['*.jar'])
+    //compile "io.pivotal.gemfire:geode-core:$gemfireVersion"
+    //compile "io.pivotal.gemfire:geode-cq:$gemfireVersion"
+    //compile "io.pivotal.gemfire:geode-wan:$gemfireVersion"
     compile "org.snakeyaml:snakeyaml-engine:$snakeYML"
     testCompile "junit:junit:$junitVersion"
 }
