@@ -2,6 +2,8 @@
 
 This project introduces a GemFire `SecurityManager` implementation which integrates GemFire with Kerberos for secure token based authentication.   
 
+** Note: This project is a work in progress. **
+
 # Terms
 1. KDC -  key distribution center
 2. JAAS - Java Authentication and Authorization Service
